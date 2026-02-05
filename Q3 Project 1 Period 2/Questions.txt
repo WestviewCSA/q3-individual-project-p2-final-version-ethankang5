@@ -1,3 +1,49 @@
 Questions:
 
 Write as many questions as you can based on the project specs.
+
+How many tiles will the board have? (O) (Is there a necessary ratio between rows and columns?)
+
+Am I gonna be able to change the symbols? (C) (I.E. omstead of using W for wolverine could I use P?)
+
+What does queueing and enqueueing mean? (O) (How does it work?)
+
+What does the Stack-Based Approach do? (C)
+
+What does the Queue based approach do? (C)
+
+How do I combine both the Stack-Based and Queue Based approaches to make an optimal approach? (O)
+
+What is the coordinate based format? (C)
+
+When is the project due? (C)
+
+Is it a purely individual project, meaning at home only? (O) (how much class time will we have)
+
+Is the due date a sharp deadline? (C) (Any room for extensions/how much points will be taken for a late submission)
+
+Will we have quizzes on this project? (C)
+
+What are illegal characters? (C)
+
+When this assignment is graded, how much of a necessity are comments? (C)
+
+When will I need to use exceptions? (C) (do they all have to do with try/catches?)
+
+How many more of these projects do we have for the quarter? (O)
+
+Will we have any other projects synonymous with this one? (C) (Assuming this is a long project, will we go between different activities?)
+
+Will Hashmaps be necessary for this project? (O) 
+
+Does the code have to work on multiple grid sizes than just one? (C)
+
+Will there be a replayability factor in the code? (C)
+
+Does the project have to display in the console log or can it be in JFrame like "2048?" (O)
+
+Why does Maze level start with 0 and not 1? (O)
+
+How will dead-ends work in this code? Will they appear at the other side or will they be inable to move? (O)
+
+What does demonstrating understanding by hand mean? (C)
