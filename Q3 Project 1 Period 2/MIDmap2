@@ -1,0 +1,20 @@
+ 7 6 2
+ W . @ @ @ @ 
+ @ . @ @ @ @ 
+ @ . . . . @ 
+ @ . . @ . @ 
+ @ @ . @ @ @ 
+ @ @ . . . @ 
+ @ @ @ @ . @
+
+ @ @ @ @ . @ 
+ @ @ @ . . @ 
+ @ . . . @ @ 
+ @ . @ . . @ 
+ @ @ @ @ . @ 
+ @ $ . . . @ 
+ @ @ @ @ @ @
+ 
+ //generate another map that you would classify as trivial
+ //a valid map has at least one "W" and one "@" 
+ //2- rooms & bigger map
