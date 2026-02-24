@@ -1,11 +1,4 @@
 4 4 1
-W . . @
-@ @ . @
-@ . . @
-@ $ @ @
-
-
-4 4 1
 W 0 0 0
 @ 0 3 0
 @ 1 0 0
@@ -18,8 +11,3 @@ $ 3 1 0
 @ 3 2 0
 @ 3 3 0
 
-
-
-
-//generate another map that you would classify as trivial
-//a valid map has at least one "W" and one "@"
