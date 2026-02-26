@@ -131,16 +131,19 @@ public class mapRunner {
 	public static void main(String[] args) {
 		File map = new File("MIDmap1");
 		File coor = new File("MIDmapCOOR");
-		if (normMap(map)[0][0][0].equals("W")) {
-			printer(normMap(map));
-		} else {
-			System.out.println("There is no Wolverine!");
-		}
-		if (coorMap(coor)[0][0][0].equals("W")) {
-			printer(coorMap(coor));
-		} else {
-			System.out.println("There is no Wolverine!");
-		}
+		String[][][] myNormMap = normMap(map);
+	    if (myNormMap != null && myNormMap[0][0][0].equals("W")) {
+	        printer(myNormMap);
+	    } else {
+	        System.out.println("There is no Wolverine!");
+	    }
+
+	    String[][][] myCoorMap = coorMap(coor);
+	    if (myCoorMap != null && myCoorMap[0][0][0].equals("W")) {
+	        printer(myCoorMap);
+	    } else {
+	        System.out.println("There is no Wolverine!");
+	    }
 			
 			
 		
