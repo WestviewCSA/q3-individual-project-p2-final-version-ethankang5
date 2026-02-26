@@ -29,26 +29,29 @@ public class mapRunner {
 	
 	
 	public static void main(String[] args) {
-		File map = new File("MIDmap1");
+		File map = new File("HARDmap4");
 		File coor = new File("MIDmapCOOR");
 		//movement key
-		HashMap<String, String> mapKey = new HashMap<String, String>();
-		mapKey.put(".", "visit");
-		mapKey.put("@", "stop");
-		mapKey.put("W", "you");
-		mapKey.put("$", "win");
-		mapKey.put("|", "hop");
-		mapKey.put("+", "visited");
+		HashMap<String, Integer> mapKey = new HashMap<String, Integer>();
+		//can still move
+		mapKey.put(".", 5);
+		mapKey.put("|", 4);
+		//blocked way
+		mapKey.put("@", 3);
+		mapKey.put("W", 2);
+		mapKey.put("+", 1);
+		//finish map
+		mapKey.put("$", 0);
 		
 		String[][][] myNormMap = normalMapper.normMap(map);
-	    if (myNormMap != null && myNormMap[0][0][0].equals("W")) {
+	    if (myNormMap != null && normalMapper.isWolverine(myNormMap)) {
 	        printer(myNormMap);
 	    } else {
 	        System.out.println("There is no Wolverine!");
 	    }
 
 	    String[][][] myCoorMap = coordinateMapper.coorMap(coor);
-	    if (myCoorMap != null && myCoorMap[0][0][0].equals("W")) {
+	    if (myCoorMap != null && coordinateMapper.isWolverine(myCoorMap)) {
 	        printer(myCoorMap);
 	    } else {
 	        System.out.println("There is no Wolverine!");
@@ -61,11 +64,11 @@ public class mapRunner {
 
 	}
 	
-	public void stackTraverse(HashMap<String, String> key, String[][][] map) {
+	public void stackTraverse(HashMap<String, Integer> key, String[][][] map) {
 		
 	}
 	
-	public void queueTraverse(HashMap<String, String> key, String[][][] map) {
+	public void queueTraverse(HashMap<String, Integer> key, String[][][] map) {
 		
 	}
 	

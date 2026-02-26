@@ -22,9 +22,6 @@ public class normalMapper {
 					}
 				
 				}
-				if (levelNum != 1) {
-					mapScan.next();
-				}
 			}
 			
 			mapScan.close();
@@ -42,5 +39,41 @@ public class normalMapper {
 		}
 		return null;
 		
+	}
+	
+	public static boolean isWolverine(String[][][] map) {
+		for (int l = 0; l < map.length; l++) {
+			for (int r = 0; r < map[l].length; r++) {
+				for (int c = 0; c < map[l][r].length; c++) {
+					if (map[l][r][c].equals("W")) {
+						return true;
+					}
+				}
+			}
+			
+		}
+		return false;
+	}
+	
+	public static int[] wolverineHop(String[][][] map, int level) {
+		int[] location = new int[2];
+		for (int r = 0; r < map[level].length; r++) {
+			for (int c = 0; c < map[level][r].length; c++) {
+				if (map[level][r][c].equals("W")) {
+					location[0] = r;
+					location[1] = c;
+					return location;
+				}
+			}
+		}
+		return location;
+	}
+	
+	public static boolean[] canMove(String[][][] map, int level, int row, int col) {
+		boolean[] direction = new boolean[4];
+		
+		boolean north = false;
+		
+		return direction;
 	}
 }
