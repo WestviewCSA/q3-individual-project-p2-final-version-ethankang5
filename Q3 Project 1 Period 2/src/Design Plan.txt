@@ -1,0 +1,11 @@
+Week 1:
+Figure out the error in printing the coordinate map
+Learn how to traverse the 3D array with queues/stacks
+Confirm different error checks
+Week 2:
+Test different maps and refine
+Week 3:
+utilize a stack helper method
+utilize a queue helper method
+test both options for runtime and efficiency
+Polish and finalize.
