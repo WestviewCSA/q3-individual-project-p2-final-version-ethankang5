@@ -136,7 +136,13 @@ public class mapRunner {
 		} else {
 			System.out.println("There is no Wolverine!");
 		}
+		if (coorMap(coor)[0][0][0].equals("W")) {
 			printer(coorMap(coor));
+		} else {
+			System.out.println("There is no Wolverine!");
+		}
+			
+			
 		
 		
 		
