@@ -31,18 +31,7 @@ public class mapRunner {
 	public static void main(String[] args) {
 		File map = new File("HARDmap4");
 		File coor = new File("MIDmapCOOR");
-		//movement key
-		HashMap<String, Integer> mapKey = new HashMap<String, Integer>();
-		//can still move
-		mapKey.put(".", 5);
-		mapKey.put("|", 4);
-		//blocked way
-		mapKey.put("@", 3);
-		mapKey.put("W", 2);
-		mapKey.put("+", 1);
-		//finish map
-		mapKey.put("$", 0);
-		
+	
 		String[][][] myNormMap = normalMapper.normMap(map);
 	    if (myNormMap != null && normalMapper.isWolverine(myNormMap)) {
 	        printer(myNormMap);
@@ -56,8 +45,6 @@ public class mapRunner {
 	    } else {
 	        System.out.println("There is no Wolverine!");
 	    }
-			
-			
 		
 		
 		
