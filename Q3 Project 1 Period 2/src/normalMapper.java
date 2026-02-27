@@ -73,9 +73,9 @@ public class normalMapper {
 		boolean[] direction = new boolean[4];
 		
 		boolean north = false;
-		boolean west = false;
 		boolean south = false;
 		boolean east = false;
+		boolean west = false;
 		//north & south
 		if (row > 0 && row < map[level].length) {
 			if (!map[level][row-1][col].equals("@") || !map[level][row-1][col].equals("+")) {
@@ -87,13 +87,14 @@ public class normalMapper {
 		}
 		//west and east
 		if (col > 0 && col < map[level][row].length) {
-			if (!map[level][row][col-1].equals("@") || !map[level][row][col-1].equals("+")) {
-				west = true;
-			}
 			if (!map[level][row][col+1].equals("@") || !map[level][row][col+1].equals("+")) {
 				east = true;
 			}
+			if (!map[level][row][col-1].equals("@") || !map[level][row][col-1].equals("+")) {
+				west = true;
+			}
 		}
+			
 		
 		direction[0] = north;
 		direction[1] = west;
