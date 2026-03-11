@@ -51,10 +51,6 @@ public class coordinateMapper {
 			
 			
 			mapScan.close();
-			//prints the bases
-			System.out.println(rowNum);
-			System.out.println(colNum);
-			System.out.println(levelNum);
 			
 			
 			
@@ -66,68 +62,4 @@ public class coordinateMapper {
 		return null;
 		
 	}
-	
-	public static boolean isWolverine(String[][][] map) {
-		for (int l = 0; l < map.length; l++) {
-			for (int r = 0; r < map[l].length; r++) {
-				for (int c = 0; c < map[l][r].length; c++) {
-					if (map[l][r][c].equals("W")) {
-						return true;
-					}
-				}
-			}
-			
-		}
-		return false;
-	}
-	
-	public static int[] wolverineHop(String[][][] map, int level) {
-			int[] location = new int[2];
-			for (int r = 0; r < map[level].length; r++) {
-				for (int c = 0; c < map[level][r].length; c++) {
-					if (map[level][r][c].equals("W")) {
-						location[0] = r;
-						location[1] = c;
-						return location;
-					}
-				}
-			}
-			return location;
-	}
-	
-	public static boolean[] canMove(String[][][] map, int level, int row, int col) {
-		boolean[] direction = new boolean[4];
-		
-		boolean north = false;
-		boolean south = false;
-		boolean east = false;
-		boolean west = false;
-		//north & south
-		if (row > 0 && row < map[level].length) {
-			if (!map[level][row-1][col].equals("@") || !map[level][row-1][col].equals("+")) {
-				north = true;
-			}
-			if (!map[level][row+1][col].equals("@") || !map[level][row+1][col].equals("+")) {
-				south = true;
-			}
-		}
-		//west and east
-		if (col > 0 && col < map[level][row].length) {
-			if (!map[level][row][col+1].equals("@") || !map[level][row][col+1].equals("+")) {
-				east = true;
-			}
-			if (!map[level][row][col-1].equals("@") || !map[level][row][col-1].equals("+")) {
-				west = true;
-			}
-		}
-			
-		
-		direction[0] = north;
-		direction[1] = west;
-		direction[2] = south;
-		direction[3] = east;
-		
-		return direction;
-	}
-
 }
