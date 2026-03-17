@@ -32,7 +32,7 @@ public class mapRunner {
 		
 		String[][][] myNormMap = normalMapper.normMap(map);
 	    String[][][] myCoorMap = coordinateMapper.coorMap(coor);
-	    stackTraverse(myNormMap);
+	    queueTraverse(myNormMap);
 	    printer(myNormMap);
 			
 			
