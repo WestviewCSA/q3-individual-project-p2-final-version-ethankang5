@@ -17,7 +17,7 @@ public class mapRunner {
 				}
 				System.out.println(res);
 			}
-			System.out.println("\n");
+			System.out.println("\n"); 
 			
 		}
 	}
