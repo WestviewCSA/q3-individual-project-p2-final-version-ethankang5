@@ -45,14 +45,14 @@ public class mapRunner {
 	
 	
 	public static void main(String[] args) {
-		File map = new File("HARDmap4");
+		File map = new File("megaMap");
 		File coor = new File("HARDmapCOOR");
 		
 		
 		String[][][] myNormMap = normalMapper.normMap(map);
 	    String[][][] myCoorMap = coordinateMapper.coorMap(coor);
 	    queueTraverse(myNormMap);
-	    coorPrinter(myNormMap);
+	    normPrinter(myNormMap);
 			
 			
 		
