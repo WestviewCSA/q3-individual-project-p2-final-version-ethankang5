@@ -91,26 +91,38 @@ public class mapRunner {
 	public static void queueTraverse(String[][][] map) {
 	    Queue<Coord> queue = new LinkedList<Coord>();
 	    boolean[][][] visited = new boolean[map.length][map[0].length][map[0][0].length];
-	    if (!mapHelpers.isWolverine(map)) return;
+	    
+	    if (!mapHelpers.isWolverine(map)) {
+	    	return;
+	    }
+	    
 	    Coord start = mapHelpers.wolverineHop(map, 0);
 	    queue.add(start);
+	    
 	    while (!queue.isEmpty()) {
 	        Coord current = queue.poll();
 	        int l = current.getLev();
 	        int r = current.getRow();
 	        int c = current.getCol();
+	        
 	        if (l < 0 || l >= map.length || r < 0 || r >= map[l].length || c < 0 || c >= map[l][r].length) {
 	            continue;
 	        }
-	        if (visited[l][r][c]) continue;
+	        
+	        if (visited[l][r][c]) {
+	        	continue;
+	        }
+	        
 	        visited[l][r][c] = true;
 	        if (map[l][r][c].equals("$")) {
 	            System.out.println("Goal found!");
 	            return;
 	        }
+	        
 	        if (map[l][r][c].equals(".")) {
 	            map[l][r][c] = "+";
 	        }
+	        
 	        boolean[] moveKey = mapHelpers.canMove(map, current);
 	        // North
 	        if (moveKey[0]) queue.add(new Coord(r - 1, c, l));
@@ -120,6 +132,7 @@ public class mapRunner {
 	        if (moveKey[2]) queue.add(new Coord(r, c + 1, l));
 	        // West
 	        if (moveKey[3]) queue.add(new Coord(r, c - 1, l));
+	        
 	        if (moveKey[4]) {
 	            Coord nextLevel = mapHelpers.wolverineHop(map, l + 1);
 	            if (nextLevel != null) {
