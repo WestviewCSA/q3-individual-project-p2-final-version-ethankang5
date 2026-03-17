@@ -19,7 +19,7 @@ public class mapRunner {
 			}
 			System.out.println("\n"); 
 			
-		}
+		} 
 	}
 	
 	public static void coorPrinter(String[][][] map) {
