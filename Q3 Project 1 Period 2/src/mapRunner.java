@@ -71,13 +71,21 @@ public class mapRunner {
 	        }
 	        boolean[] moveKey = mapHelpers.canMove(map, current);
 	        // North
-	        if (moveKey[0]) stacker.push(new Coord(r - 1, c, l));
+	        if (moveKey[0]) {
+	        	stacker.push(new Coord(r - 1, c, l));
+	        }
 	        // South
-	        if (moveKey[1]) stacker.push(new Coord(r + 1, c, l));
+	        if (moveKey[1]) {
+	        	stacker.push(new Coord(r + 1, c, l));
+	        }
 	        // East
-	        if (moveKey[2]) stacker.push(new Coord(r, c + 1, l));
+	        if (moveKey[2]) {
+	        	stacker.push(new Coord(r, c + 1, l));
+	        }
 	        // West
-	        if (moveKey[3]) stacker.push(new Coord(r, c - 1, l));
+	        if (moveKey[3]) {
+	        	stacker.push(new Coord(r, c - 1, l));
+	        }
 	       
 	        if (moveKey[4]) {
 	            Coord nextLevelStart = mapHelpers.wolverineHop(map, l + 1);
