@@ -6,7 +6,7 @@ public class mapRunner {
 	
 	
 	
-	public static void printer(String[][][] map) {
+	public static void normPrinter(String[][][] map) {
 		//prints out the map in its entirety
 		for (int l = 0; l < map.length; l++) {
 			for (int r = 0; r < map[l].length; r++) {
@@ -22,6 +22,25 @@ public class mapRunner {
 		}
 	}
 	
+	public static void coorPrinter(String[][][] map) {
+		//prints unique characters back into the code
+		for (int l = 0; l < map.length; l++) {
+			for (int r = 0; r < map[l].length; r++) {
+				
+				for (int c = 0; c < map[l][r].length; c++) {
+					String res = "";
+					String lev = "" + l;
+					String row = "" + r;
+					String col = "" + c;
+					res += map[l][r][c] + " " + row + " " + col + " " + lev + " ";
+					System.out.println(res);
+				}
+				
+			}
+			
+		}
+	}
+	
 	
 	
 	
@@ -33,7 +52,7 @@ public class mapRunner {
 		String[][][] myNormMap = normalMapper.normMap(map);
 	    String[][][] myCoorMap = coordinateMapper.coorMap(coor);
 	    queueTraverse(myNormMap);
-	    printer(myNormMap);
+	    coorPrinter(myNormMap);
 			
 			
 		
