@@ -44,28 +44,110 @@ public class mapRunner {
 	
 	
 	
-	public static void main(String[] args) {
-		File map = new File("megaMap");
-		File coor = new File("HARDmapCOOR");
-		
-		
-		String[][][] myNormMap = normalMapper.normMap(map);
-	    String[][][] myCoorMap = coordinateMapper.coorMap(coor);
-	    queueTraverse(myNormMap);
-	    normPrinter(myNormMap);
-			
-			
-		
-		
-		
-	}
+	public static boolean goalWasFound = false;
+
+    public static void main(String[] args) {
+        String mode = ""; 
+        boolean showTime = false;
+        boolean inCoord = false;
+        boolean outCoord = false;
+        String fileName = "";
+        
+        //arguments for program
+
+        for (int i = 0; i < args.length; i++) {
+            if (args[i].equals("--Stack")) {
+            	mode = "stack";
+            }
+            else if (args[i].equals("--Queue")) {
+            	mode = "queue";
+            }
+            else if (args[i].equals("--Opt")) {
+            	mode = "opt";
+            }
+            else if (args[i].equals("--Time")) {
+            	showTime = true;
+            }
+            else if (args[i].equals("--Incoordinate")) {
+            	inCoord = true;
+            }
+            else if (args[i].equals("--Outcoordinate")) {
+            	outCoord = true;
+            }
+            else fileName = args[i];
+        }
+
+        // valid argument checks
+        if (fileName.equals("")) {
+            System.out.println("Missing command line argument for program!");
+            return;
+        }
+        if (mode.equals("")) {
+            System.out.println("Please specify between --Stack, --Queue, or --Opt");
+            return;
+        }
+
+        File mapFile = new File(fileName);
+        String[][][] myMap;
+
+        if (inCoord) {
+            myMap = coordinateMapper.coorMap(mapFile);
+        } else {
+            myMap = normalMapper.normMap(mapFile);
+        }
+
+        if (myMap == null) return;
+
+        // checking for illegal characters
+        for (int l = 0; l < myMap.length; l++) {
+            for (int r = 0; r < myMap[l].length; r++) {
+                for (int c = 0; c < myMap[l][r].length; c++) {
+                    String tile = myMap[l][r][c];
+                    if (!tile.equals("W") && !tile.equals(".") && !tile.equals("@") && 
+                        !tile.equals("$") && !tile.equals("|") && !tile.equals("+")) {
+                        System.out.println("IllegalMapCharacterException: Illegal character '" + tile + "' on map");
+                        return;
+                    }
+                }
+            }
+        }
+
+        //timing portion
+        long start = System.nanoTime();
+        
+        if (mode.equals("stack")) {
+            stackTraverse(myMap);
+        } else {
+            queueTraverse(myMap);
+        }
+
+        long end = System.nanoTime();
+
+        if (goalWasFound) {
+            if (outCoord) {
+                coorPrinter(myMap);
+            } else {
+                normPrinter(myMap);
+            }
+        } else {
+            System.out.println("The Wolverine Store is closed.");
+        }
+
+        if (showTime) {
+            double duration = (end - start) / 1000000000.0;
+            System.out.println("Total Runtime: " + duration + " seconds");
+        }
+    }
+    
 	
 	public static void stackTraverse(String[][][] map) {
 	    Stack<Coord> stacker = new Stack<Coord>();
 	    boolean[][][] visited = new boolean[map.length][map[0].length][map[0][0].length];
+	    
 	    if (!mapHelpers.isWolverine(map)) {
 	        return;
 	    }
+	    
 	    Coord start = mapHelpers.wolverineHop(map, 0);
 	    stacker.push(start);
 	    while (!stacker.empty()) {
@@ -73,21 +155,27 @@ public class mapRunner {
 	        int l = current.getLev();
 	        int r = current.getRow();
 	        int c = current.getCol();
+	        
 	        if (l < 0 || l >= map.length || r < 0 || r >= map[l].length || c < 0 || c >= map[l][r].length) {
 	            continue;
 	        }
+	        
 	        if (visited[l][r][c]) {
 	            continue;
 	        }
+	        
 	        visited[l][r][c] = true;
 	        if (map[l][r][c].equals("$")) {
 	            System.out.println("Goal found!");
-	            return;
-	        } 
+	            goalWasFound = true;
+	            break;
+	        }
+	        
 	        if (map[l][r][c].equals(".") || map[l][r][c].equals("|")) {
 	        	//check for jump gate
 	            if (!map[l][r][c].equals("|")) map[l][r][c] = "+";
 	        }
+	        
 	        boolean[] moveKey = mapHelpers.canMove(map, current);
 	        // North
 	        if (moveKey[0]) {
@@ -118,7 +206,6 @@ public class mapRunner {
 	public static void queueTraverse(String[][][] map) {
 	    Queue<Coord> queue = new LinkedList<Coord>();
 	    boolean[][][] visited = new boolean[map.length][map[0].length][map[0][0].length];
-	    
 	    if (!mapHelpers.isWolverine(map)) {
 	    	return;
 	    }
@@ -143,7 +230,8 @@ public class mapRunner {
 	        visited[l][r][c] = true;
 	        if (map[l][r][c].equals("$")) {
 	            System.out.println("Goal found!");
-	            return;
+	            goalWasFound = true;
+	            break;
 	        }
 	        
 	        if (map[l][r][c].equals(".")) {
