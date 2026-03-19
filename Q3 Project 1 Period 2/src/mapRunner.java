@@ -148,6 +148,8 @@ public class mapRunner {
 	        return;
 	    }
 	    
+	    Coord[][][] parentMap = new Coord[map.length][map[0].length][map[0][0].length];
+	    
 	    Coord start = mapHelpers.wolverineHop(map, 0);
 	    stacker.push(start);
 	    while (!stacker.empty()) {
@@ -168,6 +170,7 @@ public class mapRunner {
 	        if (map[l][r][c].equals("$")) {
 	            System.out.println("Goal found!");
 	            goalWasFound = true;
+	            backtracePath(map, parentMap, current);
 	            break;
 	        }
 	        
@@ -178,26 +181,44 @@ public class mapRunner {
 	        
 	        boolean[] moveKey = mapHelpers.canMove(map, current);
 	        // North
-	        if (moveKey[0]) {
+	        if (moveKey[0] && r - 1 >= 0) {
+	        	if (parentMap[l][r - 1][c] == null) {
+	        		parentMap[l][r - 1][c] = current;
+	        	}
 	        	stacker.push(new Coord(r - 1, c, l));
 	        }
 	        // South
-	        if (moveKey[1]) {
+	        if (moveKey[1] && r + 1 < map[l].length) {
+	        	if (parentMap[l][r + 1][c] == null) {
+	        		parentMap[l][r + 1][c] = current;
+	        	}
 	        	stacker.push(new Coord(r + 1, c, l));
 	        }
 	        // East
-	        if (moveKey[2]) {
+	        if (moveKey[2] && c + 1 < map[l][r].length) {
+	        	if (parentMap[l][r][c + 1] == null) {
+	        		parentMap[l][r][c + 1] = current;
+	        	}
 	        	stacker.push(new Coord(r, c + 1, l));
 	        }
 	        // West
-	        if (moveKey[3]) {
+	        if (moveKey[3] && c - 1 >= 0) {
+	        	if (parentMap[l][r][c - 1] == null) {
+	        		parentMap[l][r][c - 1] = current;
+	        	}
 	        	stacker.push(new Coord(r, c - 1, l));
 	        }
 	       
-	        if (moveKey[4]) {
+	        if (moveKey[4] && l + 1 < map.length) {
 	            Coord nextLevelStart = mapHelpers.wolverineHop(map, l + 1);
 	            if (nextLevelStart != null) {
-	                stacker.push(nextLevelStart);
+	            	int nextL = nextLevelStart.getLev();
+		            int nextR = nextLevelStart.getRow();
+		            int nextC = nextLevelStart.getCol();
+		            if (parentMap[nextL][nextR][nextC] == null) {
+		                parentMap[nextL][nextR][nextC] = current;
+		            }
+		            stacker.push(nextLevelStart);
 	            }
 	        }
 	    }
@@ -209,6 +230,8 @@ public class mapRunner {
 	    if (!mapHelpers.isWolverine(map)) {
 	    	return;
 	    }
+	    
+	    Coord[][][] parentMap = new Coord[map.length][map[0].length][map[0][0].length];
 	    
 	    Coord start = mapHelpers.wolverineHop(map, 0);
 	    queue.add(start);
@@ -231,6 +254,7 @@ public class mapRunner {
 	        if (map[l][r][c].equals("$")) {
 	            System.out.println("Goal found!");
 	            goalWasFound = true;
+	            backtracePath(map, parentMap, current);
 	            break;
 	        }
 	        
@@ -240,28 +264,77 @@ public class mapRunner {
 	        
 	        boolean[] moveKey = mapHelpers.canMove(map, current);
 	        // North
-	        if (moveKey[0]) {
-	        	queue.add(new Coord(r - 1, c, l));
+	        if (moveKey[0] && r - 1 >= 0) { 
+	            if (parentMap[l][r - 1][c] == null) {
+	            	parentMap[l][r - 1][c] = current;
+	            }
+	            queue.add(new Coord(r - 1, c, l));
 	        }
 	        // South
-	        if (moveKey[1]) {
-	        	queue.add(new Coord(r + 1, c, l));
+	        if (moveKey[1] && r + 1 < map[l].length) {
+	            if (parentMap[l][r + 1][c] == null) {
+	            	parentMap[l][r + 1][c] = current;
+	            }
+	            queue.add(new Coord(r + 1, c, l));
 	        }
 	        // East
-	        if (moveKey[2]) {
-	        	queue.add(new Coord(r, c + 1, l));
+	        if (moveKey[2] && c + 1 < map[l][r].length) {
+	            if (parentMap[l][r][c + 1] == null) {
+	            	parentMap[l][r][c + 1] = current;
+	            }
+	            queue.add(new Coord(r, c + 1, l));
 	        }
 	        // West
-	        if (moveKey[3]) {
-	        	queue.add(new Coord(r, c - 1, l));
+	        if (moveKey[3] && c - 1 >= 0) {
+	            if (parentMap[l][r][c - 1] == null) {
+	            	parentMap[l][r][c - 1] = current;
+	            }
+	            queue.add(new Coord(r, c - 1, l));
 	        }
-	        
-	        if (moveKey[4]) {
+
+	        if (moveKey[4] && l + 1 < map.length) {
 	            Coord nextLevel = mapHelpers.wolverineHop(map, l + 1);
 	            if (nextLevel != null) {
+	                int nextL = nextLevel.getLev();
+	                int nextR = nextLevel.getRow();
+	                int nextC = nextLevel.getCol();
+	                if (parentMap[nextL][nextR][nextC] == null) {
+	                	parentMap[nextL][nextR][nextC] = current;
+	                }
 	                queue.add(nextLevel);
 	            }
 	        }
+	        
+	    }
+	}
+	
+	public static void backtracePath(String[][][] map, Coord[][][] parentMap, Coord goal) {
+	    //clearing up to show only one optimal path
+	    for (int l = 0; l < map.length; l++) {
+	        for (int r = 0; r < map[l].length; r++) {
+	            for (int c = 0; c < map[l][r].length; c++) {
+	                if (map[l][r][c].equals("+")) {
+	                    map[l][r][c] = ".";
+	                }
+	            }
+	        }
+	    }
+
+	    // trace back from the goal to the start
+	    Coord current = parentMap[goal.getLev()][goal.getRow()][goal.getCol()];
+	    
+	    while (current != null) {
+	        int l = current.getLev(), r = current.getRow(), c = current.getCol();
+	        
+	        if (map[l][r][c].equals("W") && l == 0) { 
+	            break; 
+	        }
+	        
+	        if (map[l][r][c].equals(".")) {
+	            map[l][r][c] = "+";
+	        }
+	        
+	        current = parentMap[l][r][c];
 	    }
 	}
 
