@@ -84,13 +84,14 @@ public class mapRunner {
         //help argument
         if (help) {
         	System.out.println("This program, given a map (txt file), shows the path with '+' in a VALID map from the wolverine to the wolverine buck" + "\n");
-        	System.out.println("Pick only ONE of the following switches:");
-        	System.out.println("--Stack (uses stack algorithm)");
-        	System.out.println("--Queue (uses Queue algorithm)");
-        	System.out.println("--Opt (uses Optimal path algorithm)");
+        	System.out.println("Pick only ONE of the following algorithm switches:");
+        	System.out.println("--Stack             (uses stack algorithm)");
+        	System.out.println("--Queue             (uses Queue algorithm)");
+        	System.out.println("--Opt               (uses Optimal path algorithm)" + "\n");
+        	System.out.println("Pick ANY of these switches w/ an algorithm switch if your map satisfies their conditions");
         	System.out.println("--Incoordinate      ONLY if you are providing a coordinate map");
         	System.out.println("--Outcoordinate     If switched, prints back the solved map in coordinate form, otherwise it'll print the base map layout");
-        	System.out.println("--Time              shows the runtime of the code");
+        	System.out.println("--Time              Shows the runtime of the code");
         	System.exit(0);
         }
 
