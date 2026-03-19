@@ -51,6 +51,7 @@ public class mapRunner {
         boolean showTime = false;
         boolean inCoord = false;
         boolean outCoord = false;
+        boolean help = false;
         String fileName = "";
         
         //arguments for program
@@ -74,7 +75,23 @@ public class mapRunner {
             else if (args[i].equals("--Outcoordinate")) {
             	outCoord = true;
             }
+            else if (args[i].equals("--Help")) {
+            	help = true;
+            } 
             else fileName = args[i];
+        }
+        
+        //help argument
+        if (help) {
+        	System.out.println("This program, given a map (txt file), shows the path with '+' in a VALID map from the wolverine to the wolverine buck" + "\n");
+        	System.out.println("Pick only ONE of the following switches:");
+        	System.out.println("--Stack (uses stack algorithm)");
+        	System.out.println("--Queue (uses Queue algorithm)");
+        	System.out.println("--Opt (uses Optimal path algorithm)");
+        	System.out.println("--Incoordinate      ONLY if you are providing a coordinate map");
+        	System.out.println("--Outcoordinate     If switched, prints back the solved map in coordinate form, otherwise it'll print the base map layout");
+        	System.out.println("--Time              shows the runtime of the code");
+        	System.exit(0);
         }
 
         // valid argument checks
@@ -86,6 +103,7 @@ public class mapRunner {
             System.out.println("Please specify between --Stack, --Queue, or --Opt");
             return;
         }
+        
 
         File mapFile = new File(fileName);
         String[][][] myMap;
