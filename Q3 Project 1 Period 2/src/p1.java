@@ -2,7 +2,7 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
-public class mapRunner {
+public class p1 {
 	
 	
 	
@@ -10,7 +10,6 @@ public class mapRunner {
 		//prints out the map in its entirety
 		for (int l = 0; l < map.length; l++) {
 			for (int r = 0; r < map[l].length; r++) {
-			
 				String res = "";
 				for (int c = 0; c < map[l][r].length; c++) {
 					res += map[l][r][c] + " ";

@@ -4,7 +4,7 @@ class stackTest {
 	@Test
    public void testPath() {
        String[][][] testMap = { { {"W", ".", "."}, {"@", ".", "@"}, {"$", ".", "."} } };
-       mapRunner.stackTraverse(testMap);
+       p1.stackTraverse(testMap);
        //check if traversal makes it around the wall
        assertEquals("+", testMap[0][0][1], "Tile (0,1) should be marked as visited");
        assertEquals("+", testMap[0][1][1], "Tile (1,1) should be marked as visited");
@@ -16,14 +16,14 @@ class stackTest {
    @Test
    public void testImpossiblePath() {
        String[][][] blockedMap = { { {"W", ".", "@"}, {"@", "@", "@"}, {"$", ".", "."} } };
-       mapRunner.stackTraverse(blockedMap);
+       p1.stackTraverse(blockedMap);
        assertEquals(".", blockedMap[0][2][1], "Blocked area should remain '.'");
    }
    @Test
    public void testMultiLevelJump() {
    	//map has 2 levels
        String[][][] levelMap = { {  {"W", "|"} }, {  {"W", "$"} } };
-       mapRunner.stackTraverse(levelMap);
+       p1.stackTraverse(levelMap);
        //check if properly uses portal
        assertEquals("$", levelMap[1][0][1], "Goal on second level index 1 should be found");
    }
