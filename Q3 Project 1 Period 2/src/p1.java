@@ -4,7 +4,9 @@ import java.util.Queue;
 import java.util.Stack;
 public class p1 {
 	
-	
+	public p1() {
+		
+	}
 	
 	public static void normPrinter(String[][][] map) {
 		//prints out the map in its entirety
