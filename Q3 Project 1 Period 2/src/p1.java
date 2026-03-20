@@ -186,7 +186,6 @@ public class p1 {
 	        
 	        visited[l][r][c] = true;
 	        if (map[l][r][c].equals("$")) {
-	            System.out.println("Goal found!");
 	            goalWasFound = true;
 	            backtracePath(map, parentMap, current);
 	            break;
@@ -270,7 +269,6 @@ public class p1 {
 	        
 	        visited[l][r][c] = true;
 	        if (map[l][r][c].equals("$")) {
-	            System.out.println("Goal found!");
 	            goalWasFound = true;
 	            backtracePath(map, parentMap, current);
 	            break;
