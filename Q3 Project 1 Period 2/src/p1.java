@@ -80,7 +80,7 @@ public class p1 {
             else if (args[i].equals("--Help")) {
             	help = true;
             } 
-            else fileName = args[i];
+            else fileName = args[args.length-1];
         }
         
         //help argument

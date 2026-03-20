@@ -36,6 +36,7 @@ public class normalMapper {
 				
 			}	
 			mapScan.close();
+			
 			return mapLay;
 	}
 	
