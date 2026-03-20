@@ -48,6 +48,7 @@ public class p1 {
 	public static boolean goalWasFound = false;
 
     public static void main(String[] args) {
+    try {
         String mode = ""; 
         boolean showTime = false;
         boolean inCoord = false;
@@ -97,13 +98,8 @@ public class p1 {
         }
 
         // valid argument checks
-        if (fileName.equals("")) {
-            System.out.println("Missing command line argument for program!");
-            return;
-        }
-        if (mode.equals("")) {
-            System.out.println("Please specify between --Stack, --Queue, or --Opt");
-            return;
+        if (fileName.equals("") || mode.equals(" ")) {
+            throw new IllegalCommandLineInputsException("IllegalCommandLineInputsException: Missing required command line input argument for program");
         }
         
 
@@ -116,7 +112,9 @@ public class p1 {
             myMap = normalMapper.normMap(mapFile);
         }
 
-        if (myMap == null) return;
+        if (myMap == null) {
+        	return;
+        }
 
         // checking for illegal characters
         for (int l = 0; l < myMap.length; l++) {
@@ -125,8 +123,7 @@ public class p1 {
                     String tile = myMap[l][r][c];
                     if (!tile.equals("W") && !tile.equals(".") && !tile.equals("@") && 
                         !tile.equals("$") && !tile.equals("|") && !tile.equals("+")) {
-                        System.out.println("IllegalMapCharacterException: Illegal character '" + tile + "' on map");
-                        return;
+                        throw new IllegalMapCharacterException("IllegalMapCharacterException: Illegal characters on a map");
                     }
                 }
             }
@@ -157,6 +154,11 @@ public class p1 {
             double duration = (end - start) / 1000000000.0;
             System.out.println("Total Runtime: " + duration + " seconds");
         }
+        
+    }catch (RuntimeException e) {
+    		System.err.println(e.getMessage());
+    		System.exit(-1);
+    }
     }
     
 	
