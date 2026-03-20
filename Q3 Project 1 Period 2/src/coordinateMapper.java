@@ -6,13 +6,7 @@ import java.util.Scanner;
 public class coordinateMapper {
 	
 	public static String[][][] coorMap(File input) {
-		Scanner mapScan;
-		try {
-			mapScan = new Scanner(input);
-		} catch (Exception e) {
-			return null;
-		}
-		
+		try (Scanner mapScan = new Scanner(input)) {
 		if (!mapScan.hasNextInt()) {
 			throw new IncorrectMapFormatException("IncorrectMapFormatException: Incorrectly formatted maps such as not having a pair of positive numbers in the first line");
 		}
@@ -34,13 +28,7 @@ public class coordinateMapper {
 				
 				}
 			}
-			Scanner temp = null;
-			try {
-				temp = new Scanner(input);
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			Scanner temp = new Scanner(input);
 			//skip the guiding numbers
 			temp.next();
 			temp.next();
@@ -66,8 +54,11 @@ public class coordinateMapper {
 					mapLay[depth][row][col] = coords[r][0];
 			}
 			
-			
-			mapScan.close();		
 			return mapLay;
+			
+		} catch (FileNotFoundException e) {
+	        return null; 
+	    }
 	}
+		
 }

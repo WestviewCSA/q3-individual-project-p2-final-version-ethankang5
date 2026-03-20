@@ -5,12 +5,7 @@ import java.util.Scanner;
 public class normalMapper {
 
 	public static String[][][] normMap(File input) {
-		Scanner mapScan;
-		try {
-			mapScan = new Scanner(input);
-		} catch (Exception e) {
-			return null;
-		}
+		try (Scanner mapScan = new Scanner(input)) {
 		
 		if (!mapScan.hasNextInt()) {
 			throw new IncorrectMapFormatException("IncorrectMapFormatException: Incorrectly formatted maps such as not having a pair of positive numbers in the first line");
@@ -35,9 +30,10 @@ public class normalMapper {
 				}
 				
 			}	
-			mapScan.close();
-			
 			return mapLay;
+		} catch (FileNotFoundException e) {
+			return null; 
+		}
 	}
 	
 }
