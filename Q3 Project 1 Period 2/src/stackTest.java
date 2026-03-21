@@ -1,6 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 class stackTest {
+	p1 p1 = new p1();
 	@Test
    public void testPath() {
        String[][][] testMap = { { {"W", ".", "."}, {"@", ".", "@"}, {"$", ".", "."} } };

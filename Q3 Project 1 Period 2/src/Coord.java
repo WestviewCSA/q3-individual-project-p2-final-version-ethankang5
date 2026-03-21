@@ -1,8 +1,15 @@
 
 public class Coord {
-   private int row;
-   private int col;
-   private int lev;
+   int row;
+   int col;
+   int lev;
+   Coord parent;
+   
+   public Coord() {
+	   row = 0;
+	   col = 0;
+	   lev = 0;
+   }
    
    public Coord(int row, int col, int lev) {
        this.row = row;
@@ -10,10 +17,12 @@ public class Coord {
        this.lev = lev;
    }
    
-   public Coord() {
-	   row = 0;
-	   col = 0;
-	   lev = 0;
+   
+   Coord(int r, int c, int l, Coord parent) {
+       this.row = r;
+       this.col = c;
+       this.lev = l;
+       this.parent = parent;
    }
    
    public int getRow() {

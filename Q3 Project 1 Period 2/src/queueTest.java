@@ -1,11 +1,13 @@
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 class queueTest {
+	p1 p1 = new p1();
 	@Test
    public void testEfficiency() {
       
        String[][][] map = {{ {"W", ".", "$"}, {".", "@", "@"}, {".", ".", "."} }};
-       p1.queueTraverse(map);
+       
+	   p1.queueTraverse(map);
       
        assertEquals("+", map[0][0][1], "Queue should take the direct path to buck");
    }
