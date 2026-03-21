@@ -98,7 +98,7 @@ public class p1 {
         }
 
         // valid argument checks
-        if (fileName.equals("") || mode.equals(" ")) {
+        if (fileName.equals("") || mode.equals("")) {
             throw new IllegalCommandLineInputsException("IllegalCommandLineInputsException: Missing required command line input argument for program");
         }
         

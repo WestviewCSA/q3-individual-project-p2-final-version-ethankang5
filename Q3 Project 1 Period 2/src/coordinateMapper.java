@@ -18,15 +18,11 @@ public class coordinateMapper {
 			String[][][] mapLay = new String[levelNum][rowNum][colNum];
 			
 			for (int l = 0; l < mapLay.length; l++) {
-				for (int r = 0; r < mapLay[l].length; r++) {
-					for (int c = 0; c < mapLay[l][r].length; c++) {
-						if (!mapScan.hasNext()) {
-							throw new IncompleteMapException("IncompleteMapException: Incomplete map files such as not enough characters for a given row or too few rows");
-						}
-						mapLay[l][r][c] = ".";
-					}
-				
-				}
+			    for (int r = 0; r < mapLay[l].length; r++) {
+			        for (int c = 0; c < mapLay[l][r].length; c++) {
+			            mapLay[l][r][c] = ".";
+			        }
+			    }
 			}
 			Scanner temp = new Scanner(input);
 			//skip the guiding numbers

@@ -17,19 +17,17 @@ public class normalMapper {
 			//mapLay contains the values of all elements in the map accurately
 			String[][][] mapLay = new String[levelNum][rowNum][colNum];
 			
-			for (int l = 0; l < mapLay.length; l++) {
-				for (int r = 0; r < mapLay[l].length; r++) {
-					for (int c = 0; c < mapLay[l][r].length; c++) {
-						if (!mapScan.hasNext()) {
-							throw new IncompleteMapException("IncompleteMapException: Incomplete map files such as not enough characters for a given row or too few rows");
-						}
-						String temp = mapScan.next();
-						mapLay[l][r][c] = temp;
-					}
-				
-				}
-				
-			}	
+			for (int l = 0; l < levelNum; l++) {
+			    for (int r = 0; r < rowNum; r++) {
+			        if (!mapScan.hasNext()) {
+			            throw new IncompleteMapException("IncompleteMapException: Incomplete map files such as not enough characters for a given row or too few rows");
+			        }
+			        String rowString = mapScan.next(); 	   
+			        for (int c = 0; c < colNum; c++) {
+			            mapLay[l][r][c] = String.valueOf(rowString.charAt(c));
+			        }
+			    }
+			}
 			return mapLay;
 		} catch (FileNotFoundException e) {
 			return null; 

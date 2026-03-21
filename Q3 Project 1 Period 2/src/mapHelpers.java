@@ -61,11 +61,11 @@ public class mapHelpers {
 		direction[2] = east;
 		direction[3] = west;
 		
-		if (map[level][row][col].equals("|")) {
-	        if (level + 1 < map.length) {
-	            jump = true;
-	        }
-	    }
+		if (map[level][row][col].equals("|") && level + 1 < map.length) {
+		    jump = true;
+		} else if (map[level][row][col].equals("W") && level > 0) {
+		    jump = true;
+		}
 		direction[4] = jump;
 		
 		return direction;
